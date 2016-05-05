@@ -21,16 +21,56 @@ class FetcherTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func testBasicGET() {
+        //XCTestExpectation *testResult = [self expectationWithDescription:@"Fetch with GET"];
+        let testResult = self.expectationWithDescription("Fetch with GET");
+
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let session = NSURLSession.sharedSession()
+        let url = NSURL(string: "https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html")
+        
+        session.fetch(url!)
+            .then { (response) in
+                XCTAssertNotNil(response.headers)
+                XCTAssertNotNil(response.headers.get("date"))
+                XCTAssertNil(response.headers.get("bogus"))
+                
+                testResult.fulfill()
+                return response.headers
+            }
+            .catch_ { (error) in
+                print(error);
+                return error;
+            }
+        
+        waitForExpectationsWithTimeout(2.0, handler: nil)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
+    func testCustomHeaderGET() {
+        //XCTestExpectation *testResult = [self expectationWithDescription:@"Fetch with GET"];
+        let testResult = self.expectationWithDescription("Fetch with custom headers GET");
+        
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let session = NSURLSession.sharedSession()
+        let url = NSURL(string: "https://github.com/notifications")
+        let headers = Headers()
+        
+        headers.append("Custom-1", value: "Value-1")
+        headers.append("Custom-2", value: "Value-2")
+        
+        session.fetch(url!)
+            .then { (response) in
+                testResult.fulfill()
+                return response.headers
+            }
+            .catch_ { (error) in
+                print(error);
+                return error;
         }
+        
+        waitForExpectationsWithTimeout(2.0, handler: nil)
     }
     
 }

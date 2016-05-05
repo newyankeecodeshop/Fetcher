@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		497E5EE11CDC010B000E189F /* Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E5EE01CDC010B000E189F /* Body.swift */; };
 		49A865541CDA437300DB1042 /* Fetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A865531CDA437300DB1042 /* Fetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49A8655B1CDA437300DB1042 /* Fetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A865501CDA437300DB1042 /* Fetcher.framework */; };
 		49A865601CDA437300DB1042 /* FetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A8655F1CDA437300DB1042 /* FetcherTests.swift */; };
+		49A8656B1CDA43BB00DB1042 /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A8656A1CDA43BB00DB1042 /* Fetch.swift */; };
+		49A8656D1CDA443800DB1042 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A8656C1CDA443800DB1042 /* Promise.swift */; };
+		49A8656F1CDA452900DB1042 /* Headers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A8656E1CDA452900DB1042 /* Headers.swift */; };
+		49A865711CDA45E200DB1042 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A865701CDA45E200DB1042 /* Request.swift */; };
+		49A865731CDA45EA00DB1042 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A865721CDA45EA00DB1042 /* Response.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +29,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		497E5EE01CDC010B000E189F /* Body.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Body.swift; sourceTree = "<group>"; };
 		49A865501CDA437300DB1042 /* Fetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A865531CDA437300DB1042 /* Fetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Fetcher.h; sourceTree = "<group>"; };
 		49A865551CDA437300DB1042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49A8655A1CDA437300DB1042 /* FetcherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FetcherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A8655F1CDA437300DB1042 /* FetcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherTests.swift; sourceTree = "<group>"; };
 		49A865611CDA437300DB1042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49A8656A1CDA43BB00DB1042 /* Fetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetch.swift; sourceTree = "<group>"; };
+		49A8656C1CDA443800DB1042 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
+		49A8656E1CDA452900DB1042 /* Headers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Headers.swift; sourceTree = "<group>"; };
+		49A865701CDA45E200DB1042 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		49A865721CDA45EA00DB1042 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +85,12 @@
 			children = (
 				49A865531CDA437300DB1042 /* Fetcher.h */,
 				49A865551CDA437300DB1042 /* Info.plist */,
+				49A8656A1CDA43BB00DB1042 /* Fetch.swift */,
+				49A8656C1CDA443800DB1042 /* Promise.swift */,
+				49A8656E1CDA452900DB1042 /* Headers.swift */,
+				49A865701CDA45E200DB1042 /* Request.swift */,
+				49A865721CDA45EA00DB1042 /* Response.swift */,
+				497E5EE01CDC010B000E189F /* Body.swift */,
 			);
 			path = Fetcher;
 			sourceTree = "<group>";
@@ -148,6 +166,7 @@
 				TargetAttributes = {
 					49A8654F1CDA436C00DB1042 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = CMU8X74C47;
 					};
 					49A865591CDA437300DB1042 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -194,6 +213,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49A8656B1CDA43BB00DB1042 /* Fetch.swift in Sources */,
+				49A865711CDA45E200DB1042 /* Request.swift in Sources */,
+				49A8656D1CDA443800DB1042 /* Promise.swift in Sources */,
+				497E5EE11CDC010B000E189F /* Body.swift in Sources */,
+				49A8656F1CDA452900DB1042 /* Headers.swift in Sources */,
+				49A865731CDA45EA00DB1042 /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,28 +335,35 @@
 		49A865651CDA437300DB1042 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Fetcher/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.seaviewsoftware.Fetcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		49A865661CDA437300DB1042 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Fetcher/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.seaviewsoftware.Fetcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -378,6 +410,7 @@
 				49A865661CDA437300DB1042 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49A865671CDA437300DB1042 /* Build configuration list for PBXNativeTarget "FetcherTests" */ = {
 			isa = XCConfigurationList;
@@ -386,6 +419,7 @@
 				49A865691CDA437300DB1042 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
