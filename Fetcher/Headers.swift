@@ -11,14 +11,25 @@ import Foundation
 /* https://fetch.spec.whatwg.org/#http-whitespace-bytes */
 let HttpWhiteSpaceSet = NSCharacterSet(charactersInString: "\0x09\0x0A\0x0D\0x20")
 
+/**
+ Headers represents an ordered list of key-value pairs with potentially duplicate keys.
+ */
 public class Headers {
-    // An ordered list of key-value pairs with potentially duplicate keys.
-    var headerList: Array<(String, String)> = []
+    var headerList: Array<(String, String)>
     
-    // TODO: initializers with Headers, Array, Dictionary
-    // TODO: support "subscript" operator with get/set
+    init () {
+        self.headerList = []
+    }
 
-    public func append(name: String, value: String) {
+    init (_ headerDict: [String : String]) {
+        self.headerList = Array(headerDict)
+    }
+
+    init (_ headers: Headers) {
+        self.headerList = Array(headers.headerList)
+    }
+
+    public func append(name: String, _ value: String) {
         // Add the name/value pair to the end of the list
         headerList.append((name, value.stringByTrimmingCharactersInSet(HttpWhiteSpaceSet)))
     }
@@ -42,7 +53,7 @@ public class Headers {
         })
     }
     
-    public func set(name: String, value: String) {
+    public func set(name: String, _ value: String) {
         let normValue = value.stringByTrimmingCharactersInSet(HttpWhiteSpaceSet)
         
         // If value already in list, replace value and remove all others
@@ -57,11 +68,35 @@ public class Headers {
         }
     }
     
+    public subscript(name: String) -> String? {
+        get {
+            return self.get(name)
+        }
+        set(newValue) {
+            if let value = newValue {
+                self.set(name, value)
+            } else {
+                self.delete(name)
+            }
+        }
+    }
+
     func combinedValue(headers: Array<(String, String)>) -> String {
+        if (headers.count == 1) {
+            return headers[0].1
+        }
         return headers.map({ (hdrName, hdrValue) in return hdrValue }).joinWithSeparator(",")
     }
+}
+
+// MARK: NSURLRequest
+
+extension Headers {
     
     func populateRequest(request: NSMutableURLRequest) {
-        
+        // Use [addValue:forHTTPHeaderField] so that multiple values are properly encoded.
+        for (name, value) in headerList {
+            request.addValue(value, forHTTPHeaderField: name)
+        }
     }
 }

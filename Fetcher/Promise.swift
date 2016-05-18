@@ -42,6 +42,10 @@ public class Promise<V> {
         }
     }
     
+    init (_ value: V) {
+        self.become(.Fulfilled(value))
+    }
+    
     init (_ error: ErrorType) {
         self.become(.Rejected(error))
     }
@@ -93,6 +97,31 @@ public class Promise<V> {
             }
             self.resolver = resolver
         });
+    }
+    
+    public func then<V2>(onFulfilled: (V) throws -> Promise<V2>) -> Promise<V2> {
+        
+        return Promise<V2>({ (resolve, reject) in
+            func fulfill(value: V) {
+                do {
+                    try onFulfilled(value).then(resolve).catch_(reject)
+                } catch {
+                    reject(error)
+                }
+            }
+            func resolver(newState: State<V>) {
+                switch newState {
+                case .Fulfilled(let value):
+                    fulfill(value)
+                case .Rejected(let error):
+                    reject(error)
+                case .Pending:
+                    return
+                }
+            }
+            self.resolver = resolver
+            
+        })
     }
     
     public func catch_(onRejected: (ErrorType) throws -> Void) -> Promise<V> {

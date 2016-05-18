@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15719D0D1CDFC12F00E79224 /* HeadersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15719D0C1CDFC12F00E79224 /* HeadersTests.swift */; };
+		15A8E2351CECBB4500015BFA /* FormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8E2341CECBB4500015BFA /* FormData.swift */; };
 		497E5EE11CDC010B000E189F /* Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E5EE01CDC010B000E189F /* Body.swift */; };
 		49A865541CDA437300DB1042 /* Fetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A865531CDA437300DB1042 /* Fetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49A8655B1CDA437300DB1042 /* Fetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A865501CDA437300DB1042 /* Fetcher.framework */; };
@@ -29,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		15719D0C1CDFC12F00E79224 /* HeadersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadersTests.swift; sourceTree = "<group>"; };
+		15A8E2341CECBB4500015BFA /* FormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormData.swift; sourceTree = "<group>"; };
 		497E5EE01CDC010B000E189F /* Body.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Body.swift; sourceTree = "<group>"; };
 		49A865501CDA437300DB1042 /* Fetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A865531CDA437300DB1042 /* Fetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Fetcher.h; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 				49A865701CDA45E200DB1042 /* Request.swift */,
 				49A865721CDA45EA00DB1042 /* Response.swift */,
 				497E5EE01CDC010B000E189F /* Body.swift */,
+				15A8E2341CECBB4500015BFA /* FormData.swift */,
 			);
 			path = Fetcher;
 			sourceTree = "<group>";
@@ -99,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				49A8655F1CDA437300DB1042 /* FetcherTests.swift */,
+				15719D0C1CDFC12F00E79224 /* HeadersTests.swift */,
 				49A865611CDA437300DB1042 /* Info.plist */,
 			);
 			path = FetcherTests;
@@ -218,6 +224,7 @@
 				49A8656D1CDA443800DB1042 /* Promise.swift in Sources */,
 				497E5EE11CDC010B000E189F /* Body.swift in Sources */,
 				49A8656F1CDA452900DB1042 /* Headers.swift in Sources */,
+				15A8E2351CECBB4500015BFA /* FormData.swift in Sources */,
 				49A865731CDA45EA00DB1042 /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15719D0D1CDFC12F00E79224 /* HeadersTests.swift in Sources */,
 				49A865601CDA437300DB1042 /* FetcherTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -28,15 +28,19 @@ class FetcherTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let session = NSURLSession.sharedSession()
         
-        session.fetch("http://www.apple.com/")
-            .then { (response) -> Response in
+        session.fetch("https://api.github.com")
+            .then { (response) -> Promise<String> in
                 XCTAssertNotNil(response.headers)
                 XCTAssertNotNil(response.headers.get("date"))
                 XCTAssertNil(response.headers.get("bogus"))
                 
-                testResult.fulfill()
-                return response
+                return response.text()
             }
+            .then({ (text) -> String in
+                print(text)
+                testResult.fulfill()
+                return text
+            })
             .catch_ { (error) in
                 print(error);
             }
@@ -50,12 +54,11 @@ class FetcherTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let session = NSURLSession.sharedSession()
-        let headers = Headers()
+        let headers = Headers(["Custom-1": "Value-1"])
         
-        headers.append("Custom-1", value: "Value-1")
-        headers.append("Custom-2", value: "Value-2")
+        headers.append("Custom-2", "Value-2")
         
-        session.fetch("http://www.apple.com/")
+        session.fetch("https://api.github.com", RequestInit(headers: headers))
             .then { (response) -> Headers in
                 testResult.fulfill()
                 return response.headers

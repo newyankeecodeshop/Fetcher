@@ -49,6 +49,7 @@ class ResponseHeaders : Headers {
     
     init(_ response: NSHTTPURLResponse) {
         allHeaderFields = response.allHeaderFields
+        super.init()
     }
     
     override func get(name: String) -> String? {
@@ -60,7 +61,7 @@ class ResponseHeaders : Headers {
         return allHeaderFields[name] != nil
     }
     
-    override func append(name: String, value: String) {
+    override func append(name: String, _ value: String) {
         // Throw error
     }
     
@@ -68,7 +69,63 @@ class ResponseHeaders : Headers {
         // Throw error
     }
     
-    override func set(name: String, value: String) {
+    override func set(name: String, _ value: String) {
         // Throw error
+    }
+}
+
+extension Response: Body {
+    
+    public func arrayBuffer() -> Promise<ContiguousArray<UInt8>> {
+        return Promise({ (resolve, reject) in
+            if let data = self.body {
+                var bytes = ContiguousArray<UInt8>(count: data.length, repeatedValue: 0)
+                data.getBytes(&bytes, length: bytes.count)
+                resolve(bytes)
+            } else {
+                reject(NSError(domain: "", code: -100, userInfo: nil))
+            }
+        })
+    }
+    public func blob() -> Promise<NSData> {
+        return Promise({ (resolve, reject) in
+            if let data = self.body {
+                resolve(data)
+            } else {
+                reject(NSError(domain: "", code: -100, userInfo: nil))
+            }
+        })
+    }
+    public func formData() -> Promise<FormData> {
+        return Promise({ (resolve, reject) in
+            if self.body != nil {
+                resolve(FormData())
+            } else {
+                reject(NSError(domain: "", code: -100, userInfo: nil))
+            }
+        })
+    }
+    public func json() -> Promise<AnyObject> {
+        return Promise({ (resolve, reject) in
+            do {
+                try resolve(NSJSONSerialization.JSONObjectWithData(
+                    self.body!, options: NSJSONReadingOptions(rawValue: 0)))
+            } catch {
+                reject(error)
+            }
+        })
+    }
+    public func text() -> Promise<String> {
+        return Promise({ (resolve, reject) in
+            if let data = self.body {
+                if let text = NSString(data: data, encoding: NSUTF8StringEncoding) {
+                    resolve(text as String)
+                } else {
+                    reject(NSError(domain: "", code: -100, userInfo: nil))
+                }
+            } else {
+                reject(NSError(domain: "", code: -100, userInfo: nil))
+            }
+        })
     }
 }
