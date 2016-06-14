@@ -6,7 +6,7 @@
 //  Copyright © 2016 Seaview Software LLC. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import Foundation;
 
 //! Project version number for Fetcher.
 FOUNDATION_EXPORT double FetcherVersionNumber;

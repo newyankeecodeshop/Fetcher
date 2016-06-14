@@ -23,12 +23,8 @@ class FetcherTests: XCTestCase {
     
     func testBasicGET() {
         let testResult = self.expectationWithDescription("Fetch with GET");
-
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        let session = NSURLSession.sharedSession()
         
-        session.fetch("https://api.github.com")
+        fetch("https://api.github.com")
             .then { (response) -> Promise<String> in
                 XCTAssertNotNil(response.headers)
                 XCTAssertNotNil(response.headers.get("date"))
@@ -37,37 +33,37 @@ class FetcherTests: XCTestCase {
                 return response.text()
             }
             .then({ (text) -> String in
-                print(text)
+                XCTAssertFalse(text.isEmpty)
                 testResult.fulfill()
                 return text
             })
-            .catch_ { (error) in
-                print(error);
-            }
+            .catch_ { (error) in print(error) }
         
         waitForExpectationsWithTimeout(2.0, handler: nil)
     }
     
-    func testCustomHeaderGET() {
-        let testResult = self.expectationWithDescription("Fetch with custom headers GET");
+    func testNestedGET() {
+        let testResult = self.expectationWithDescription("Fetch with multiple GETs");
         
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        let session = NSURLSession.sharedSession()
-        let headers = Headers(["Custom-1": "Value-1"])
-        
-        headers.append("Custom-2", "Value-2")
-        
-        session.fetch("https://api.github.com", RequestInit(headers: headers))
-            .then { (response) -> Headers in
+        fetch("https://api.github.com")
+            .then { (response) in response.json() }
+            .then({ (json) -> Promise<Response> in
+                let nextUrl = json.valueForKey("current_user_url") as! String
+                return fetch(nextUrl)
+            })
+            .then({ (response) in response.json() })
+            .then({ (json) -> AnyObject in
+                let message = json.valueForKey("message") as! String
+                XCTAssertEqual("Requires authentication", message)
                 testResult.fulfill()
-                return response.headers
-            }
-            .catch_ { (error) in
-                print(error);
-        }
+                return json
+            })
+            .catch_ { (error) in print(error) }
         
         waitForExpectationsWithTimeout(2.0, handler: nil)
     }
     
+    func testFileGET() {
+        
+    }
 }
