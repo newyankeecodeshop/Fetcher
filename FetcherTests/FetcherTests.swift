@@ -63,7 +63,39 @@ class FetcherTests: XCTestCase {
         waitForExpectationsWithTimeout(2.0, handler: nil)
     }
     
-    func testFileGET() {
+    func testMethodParam() {
+        let testResult = self.expectationWithDescription("Fetch with HEAD");
         
+        fetch("https://api.github.com/feeds", RequestInit(method: .HEAD))
+            .then({ (response) -> Response in
+                // There should be no body
+                XCTAssertTrue(response.body?.length == 0)
+                // but definitely headers
+                XCTAssertNotNil(response.headers.get("X-GitHub-Request-Id"))
+                testResult.fulfill()
+                return response
+            })
+            .catch_ { (error) in print(error) }
+        
+        waitForExpectationsWithTimeout(2.0, handler: nil)
+    }
+    
+    func testHeaderParam() {
+        let testResult = self.expectationWithDescription("Fetch with custom header");
+        
+        // First try the GET by asking for text/plain, which should fail. Then ask for JSON
+        fetch("https://api.github.com", RequestInit(headers: Headers(["Accept": "text/plain"])))
+            .then({ (response) -> Promise<Response> in
+                XCTAssertEqual(415, response.status)
+                return fetch("https://api.github.com", RequestInit(headers: Headers(["Accept": "application/json"])))
+            })
+            .then({ (response) -> Promise<String> in
+                XCTAssertEqual(200, response.status)
+                testResult.fulfill()
+                return response.text()
+            })
+            .catch_ { (error) in print(error) }
+        
+        waitForExpectationsWithTimeout(2.0, handler: nil)
     }
 }

@@ -56,7 +56,6 @@ enum RequestCredentials : String {
 
 enum RequestCache : String {
     case Default, NoStore, Reload, NoCache, ForceCache
-    
 }
 
 enum RequestRedirect : String {
