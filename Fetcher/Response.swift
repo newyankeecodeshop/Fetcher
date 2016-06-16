@@ -76,10 +76,10 @@ class ResponseHeaders : Headers {
 
 extension Response: Body {
     
-    public func arrayBuffer() -> Promise<ContiguousArray<UInt8>> {
+    public func arrayBuffer() -> Promise<Array<UInt8>> {
         return Promise({ (resolve, reject) in
             if let data = self.body {
-                var bytes = ContiguousArray<UInt8>(count: data.length, repeatedValue: 0)
+                var bytes = Array<UInt8>(count: data.length, repeatedValue: 0)
                 data.getBytes(&bytes, length: bytes.count)
                 resolve(bytes)
             } else {

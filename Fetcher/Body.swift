@@ -13,7 +13,7 @@ import Foundation
  */
 public protocol Body {
     
-    func arrayBuffer() -> Promise<ContiguousArray<UInt8>>
+    func arrayBuffer() -> Promise<Array<UInt8>>
 
     func blob() -> Promise<NSData>
     
