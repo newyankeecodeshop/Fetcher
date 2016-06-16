@@ -69,8 +69,8 @@
 		49A865461CDA436C00DB1042 = {
 			isa = PBXGroup;
 			children = (
-				49A865521CDA437300DB1042 /* Fetcher */,
-				49A8655E1CDA437300DB1042 /* FetcherTests */,
+				49A865521CDA437300DB1042 /* Sources */,
+				49A8655E1CDA437300DB1042 /* Tests */,
 				49A865511CDA437300DB1042 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -84,11 +84,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		49A865521CDA437300DB1042 /* Fetcher */ = {
+		49A865521CDA437300DB1042 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				49A865531CDA437300DB1042 /* Fetcher.h */,
-				49A865551CDA437300DB1042 /* Info.plist */,
 				49A8656A1CDA43BB00DB1042 /* Fetch.swift */,
 				49A8656C1CDA443800DB1042 /* Promise.swift */,
 				49A8656E1CDA452900DB1042 /* Headers.swift */,
@@ -96,18 +95,19 @@
 				49A865721CDA45EA00DB1042 /* Response.swift */,
 				497E5EE01CDC010B000E189F /* Body.swift */,
 				15A8E2341CECBB4500015BFA /* FormData.swift */,
+				49A865551CDA437300DB1042 /* Info.plist */,
 			);
-			path = Fetcher;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		49A8655E1CDA437300DB1042 /* FetcherTests */ = {
+		49A8655E1CDA437300DB1042 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				49A8655F1CDA437300DB1042 /* FetcherTests.swift */,
 				15719D0C1CDFC12F00E79224 /* HeadersTests.swift */,
 				49A865611CDA437300DB1042 /* Info.plist */,
 			);
-			path = FetcherTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,7 +349,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Fetcher/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -369,7 +369,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Fetcher/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -382,7 +382,7 @@
 		49A865681CDA437300DB1042 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = FetcherTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.seaviewsoftware.FetcherTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -392,7 +392,7 @@
 		49A865691CDA437300DB1042 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = FetcherTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.seaviewsoftware.FetcherTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
